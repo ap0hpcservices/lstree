@@ -1,12 +1,4 @@
 <?php
-//setMode($mode) $mode='html'||'text'
-//setLinkNum($num)
-//setLinkChar($ch)
-//setDirMark($mark)
-//setFileMark($mark)
-//setDelimiterMark($mark) $mark in array(<[({})]>)
-//ls($dir)
-//render($filename) if mode is text,you can give a file to hold the tree
 class LsTree{
     # directory and file mark
     private $_dirMark='d';
@@ -21,7 +13,7 @@ class LsTree{
     private $_nl='<br/>';  # html mode => $_nl is '<br/>, non-html mode => $_nl is '\n'
     private $_space='&nbsp;';  # html mode => $_space is '&nbsp;', non-html mode => $_space is ' '
     
-    # tree componment
+    # tree component
     private $_branch='|';
     private $_linkChar='-';
     private $_linkNum=4;
@@ -91,8 +83,9 @@ class LsTree{
             }
             else{
                 $str.=$prefix.$this->_ramification.$item['name'].$this->_fileSuffix.$this->_nl;
-                if($i==$len-1)$str.=$prefix.$this->_nl;//for pretty look
+                //if($i==$len-1)$str.=$prefix.$this->_nl;//for pretty look
             }
+            if($i==$len-1)$str.=$prefix.$this->_nl;//for pretty look
         }
         return $str;
     }
@@ -153,7 +146,7 @@ class LsTree{
     }
     
     
-    # tree componment
+    # tree component
     public function setLinkNum($num){
         if(is_numeric($num)){
             $num=(int)abs($num);
@@ -177,7 +170,7 @@ class LsTree{
         # before work, make all set*() effect
         $this->_fix();
         # root directory
-        $this->_str.=realpath($dir).$this->_dirSuffix.$this->_nl;
+        $this->_str=realpath($dir).$this->_dirSuffix.$this->_nl;
         # recursive parse directory
         $dirarray=$this->_rd($dir);
         # convert directory array to tree
@@ -222,7 +215,7 @@ class LsTree{
         echo '</pre>';
     }
 }
-// $my=new LsTree('.');
+ $my=new LsTree('.');
 // //$my->setMode('text');
 // //$my->setMode('html');
 // $my->setLinkNum(4);
@@ -231,6 +224,6 @@ class LsTree{
 // $my->setDirMark('d');
 // $my->setDelimiterMark('[');
 // //$my->test();
-// $my->ls('.');
-// $my->render();
+ $my->ls('.');
+ $my->render();
 ?>
