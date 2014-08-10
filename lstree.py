@@ -151,6 +151,7 @@ class LsTree(object):
 	# just specify left or right delimiter can set all of them
 	# the allowed delimiter in self._allowedDelimiter
 	def setDelimiterMark(self, delimiter):
+		'''You can use ' or " or & or () or [] or {} as delimiter'''
 		if not delimiter:
 			return
 		delimiter = delimiter[0]
