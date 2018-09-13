@@ -1,6 +1,7 @@
 import os
 
-from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
+# from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
 class LsTree(object):
 	def __init__(self):
@@ -190,10 +191,16 @@ class LsTree(object):
 		else:
 			if self._HTMLMode:
 				response_body = '\n'.join([
+					'<html>',
+					'<head>',
 					'<meta charset="utf-8"/>',
+					'</head>',
+					'<body>',
 					'<pre class="prettyprint">',
 					self._str,
-					'</pre>'
+					'</pre>',
+					'</body>',
+					'</html>'
 				])
 			else:
 				response_body = self._str
@@ -202,7 +209,7 @@ class LsTree(object):
 				def do_GET(self):
 					self.send_response(200)
 					self.end_headers()
-					self.wfile.write(response_body)
+					self.wfile.write(response_body.encode('utf-8'))
 					return
 			
 			print("Server Listening On localhost:5000")
