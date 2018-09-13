@@ -1,21 +1,26 @@
-##Usage: display directory tree by browser##
+## Introduction
+
+Display the directory tree via browser + the local web server or console.
+
+# Usage
+
+There are two versions to support PHP and python.
 
 **PHP**
 
-Put lstree.php into the directory you want to list it as a directory tree
+Put `lstree.php` into the directory you want to list it as a directory tree. Then use your browser to access it by the local server.
 
-NOTICE: the directory must be in http server document root directory
+*NOTE*: the directory must be in http server document root directory.
 
-**Python**
+**Python 3**
 
-Put lstree.py into the directory(arbitrarily directory) you want to list, and then run command:
+Put `lstree.py` into the **any** directory you want to list, and then run command:
 
-        $ python lstree.py
+    $ python lstree.py
 
-Now you can scan it by browser on `localhost:5000`
+Now you can get the directory tree via browser to go: `localhost:5000`
 
-
-###Display Example###
+The directory tree example:
 
         /var/www/html/simple_site(d)
         |----login.php(f)
@@ -38,18 +43,15 @@ Now you can scan it by browser on `localhost:5000`
         |----index.php(f)
         |----game.php(f)
 
+## More
 
-##More##
+You can configure the display details by modify the `LsTree` instance:
 
-You can configure display detail by class `LsTree` public API:
-
-        setMode(mode)  # 'html' or 'text' mode, default is html mode
-        setLinkNum(linknum)  # default link char repeat 4 times
-        setLinkChar(linkchar)  # default '-' is link char
-        setDirMark(mark)  # default 'd' is directory mark
-        setFileMark(mark)  # default 'f' is file mark
+        setMode(mode)  			# 'html' or 'text' mode, default is html mode
+        setLinkNum(linknum)  	# default link char repeat 4 times
+        setLinkChar(linkchar)  	# default '-' is link char
+        setDirMark(mark)  		# default 'd' is directory mark
+        setFileMark(mark)  		# default 'f' is file mark
         setMarkDelimiter(delimiter)  # default is '()' for wrap 'f' and 'd'
-        ls(dir)  # specify the directory you want to display
-        render(filename) # if you want write directory tree into a file, specify a filename
-        
-
+        ls(dir)  				# specify the directory you want to display
+        render(filename) 		# if you want write directory tree into a file, specify a filename
